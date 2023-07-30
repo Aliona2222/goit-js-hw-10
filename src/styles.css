@@ -1,0 +1,26 @@
+.loader {
+    display: none;
+  }
+  
+  .error {
+    display: none;
+    color: red;
+  }
+  
+
+  .cat-info {
+    padding: 10px 0;
+  }
+  
+  .cat-info img {
+    top: 0;
+    left: 0;
+    width: 30%;
+    display: block; 
+    margin: 0; 
+  }
+
+.hide-content {
+    display: none;
+  }
+  
