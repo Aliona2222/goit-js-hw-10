@@ -8,18 +8,18 @@ const catInfo = document.querySelector(".cat-info");
 
 function showLoader() {
   loader.style.display = "block";
-  breedSelect.style.display = "none";
+  breedSelect.style.display = "block";
   catInfo.style.display = "none";
+  error.style.display = "none";
 }
 
 function hideLoader() {
   loader.style.display = "none";
-  breedSelect.style.display = "block";
-  catInfo.style.display = "block";
 }
 
 function showError() {
   error.style.display = "block";
+  catInfo.style.display = "none";
 }
 
 async function handleBreedSelectChange() {
@@ -47,6 +47,7 @@ function populateBreedSelect(breeds) {
 }
 
 function displayCatInfo(catData) {
+  catInfo.style.display = "block";
   catInfo.innerHTML = `
     <img src="${catData.url}" alt="Cat Image" />
     <h3>${catData.breeds[0].name}</h3>
@@ -58,15 +59,13 @@ function displayCatInfo(catData) {
 breedSelect.addEventListener("change", handleBreedSelectChange);
 
 async function init() {
-  showLoader();
   try {
     const response = await fetchBreeds();
     const breeds = response.data;
     populateBreedSelect(breeds);
   } catch (error) {
     showError();
-  } finally {
-    hideLoader();
+    catInfo.style.display = "none"; 
   }
 }
 init();
