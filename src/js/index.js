@@ -8,7 +8,6 @@ const catInfo = document.querySelector(".cat-info");
 
 function showLoader() {
   loader.style.display = "block";
-  breedSelect.style.display = "block";
   catInfo.style.display = "none";
   error.style.display = "none";
 }
@@ -59,13 +58,16 @@ function displayCatInfo(catData) {
 breedSelect.addEventListener("change", handleBreedSelectChange);
 
 async function init() {
+  showLoader(); 
   try {
     const response = await fetchBreeds();
     const breeds = response.data;
     populateBreedSelect(breeds);
   } catch (error) {
     showError();
-    catInfo.style.display = "none"; 
+    catInfo.style.display = "none";
+  } finally {
+    hideLoader();
   }
 }
 init();
